@@ -1,0 +1,83 @@
+{% extends 'lpg_app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5 text-center">
+
+    <h2 class="fw-bold">🚚 Track Your Cylinder</h2>
+
+    <div class="card p-4 shadow-lg mt-4">
+
+        <h4>⛽️ {{ booking.company.name }}</h4>
+
+        <p>
+            Status: 
+            <span class="badge bg-primary">{{ booking.status }}</span>
+        </p>
+
+        <!-- TRACK LINE -->
+        <div class="track-container mt-5">
+
+            <div class="track-line"></div>
+
+            <!-- ✅ ID SAME AS JS -->
+            <div class="truck" id="marker">🚚</div>
+
+            <div class="labels d-flex justify-content-between mt-3">
+                <span>Pending</span>
+                <span>Approved</span>
+                <span>Out for Delivery</span>
+                <span>Delivered</span>
+            </div>
+
+        </div>
+
+        <!-- ✅ FAKE MAP -->
+        <div id="map" style="height:300px; margin-top:30px; border-radius:10px;"></div>
+
+    </div>
+
+</div>
+
+<!-- ✅ SINGLE CLEAN JS -->
+<script>
+let status = "{{ booking.status }}";
+let marker = document.getElementById("marker");
+
+// Truck movement
+if (status === "Pending") {
+    marker.style.left = "5%";
+}
+else if (status === "Approved") {
+    marker.style.left = "30%";
+}
+else if (status === "Out for Delivery") {
+    marker.style.left = "65%";
+}
+else if (status === "Delivered") {
+    marker.style.left = "90%";
+}
+</script>
+
+<!-- ✅ MAP SCRIPT -->
+<script>
+var map = L.map('map').setView([26.8467, 80.9462], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+var markerMap = L.marker([26.8467, 80.9462]).addTo(map)
+    .bindPopup("🚚 Cylinder Location")
+    .openPopup();
+</script>
+
+<!-- AUTO REFRESH -->
+<script>
+setTimeout(() => {
+    location.reload();
+}, 5000);
+</script>
+
+{% endblock %}

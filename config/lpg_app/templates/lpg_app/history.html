@@ -1,0 +1,26 @@
+{% extends 'lpg_app/base.html' %}
+
+{% block content %}
+
+<h2>Your Bookings</h2>
+
+<table class="table">
+<tr>
+<th>Company</th>
+<th>Status</th>
+<th>Track</th>
+</tr>
+
+{% for b in bookings %}
+<tr>
+<td>{{ b.company.name }}</td>
+<td>{{ b.status }}</td>
+<td>
+    <a href="/track/{{ b.id }}/" class="btn btn-info">Track</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

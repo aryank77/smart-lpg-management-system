@@ -1,0 +1,39 @@
+{% extends 'lpg_app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4 fw-bold">🔥 Select Your Gas Company</h2>
+
+    <div class="row">
+
+        {% for c in companies %}
+
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow">
+
+                <!-- IMAGE -->
+                <img src="{% static 'lpg_app/images/' %}{{ c.name|lower|cut:' gas' }}.png"
+                     class="card-img-top p-3" height="150">
+
+                <!-- CONTENT -->
+                <div class="card-body">
+                    <h4 class="fw-bold">{{ c.name }}</h4>
+
+                    <a href="/book/{{ c.id }}/" class="btn btn-primary">
+                        Book Now
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
