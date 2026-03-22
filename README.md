@@ -14,8 +14,11 @@ A Django-based web application for LPG cylinder booking and delivery tracking.
 - HTML, CSS, Bootstrap
 - SQLite Database
 
-## 📸 Screenshots
-(Add your project screenshots here)
+## 🚀 Project Preview
+
+> Complete flow: Register → Login → Select Company → Book → Track → Delivery Dashboard
+
+![Smart LPG Preview](screenshots/preview.png)
 
 ## ⚙️ Installation
 
