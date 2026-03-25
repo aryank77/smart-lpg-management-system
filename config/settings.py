@@ -129,4 +129,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'lpg_app/static')
 ]
-ALLOWED_HOSTS = ['*']  # ya baad me render URL dal dena
+ALLOWED_HOSTS = ['*']  # render URL
