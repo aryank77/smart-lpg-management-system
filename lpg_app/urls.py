@@ -19,4 +19,5 @@ urlpatterns = [
     path('delivery/', views.delivery_dashboard, name='delivery_dashboard'),
     
     path('deliver/<int:id>/', views.mark_delivered, name='mark_delivered'),path('deliver/<int:id>/', views.mark_delivered, name='mark_delivered'),
+    path('create_companies/',views.create_companies),
 ]

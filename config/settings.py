@@ -130,3 +130,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'lpg_app/static')
 ]
 ALLOWED_HOSTS = ['*']  # render URL
+print("ALLOWED HOSTS LOADED")
