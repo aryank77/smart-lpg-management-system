@@ -7,6 +7,14 @@ from django.utils import timezone
 from datetime import timedelta
 from .models import Profile
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def create_admin(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "admin@gmail.com", "admin123")
+        return HttpResponse("Admin created")
+    return HttpResponse("Admin already exists")
 # Home
 def index(request):
     return render(request, 'lpg_app/index.html')

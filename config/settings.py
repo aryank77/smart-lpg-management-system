@@ -79,8 +79,8 @@ import os
 
 DATABASES = {
     'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL"),
-        conn_max_age=600
+        os.environ.get('DATABASE_URL'),
+        
     )
 }
 
@@ -129,4 +129,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'lpg_app/static')
 ]
-ALLOWED_HOSTS = ['https://smart-lpg-management-system-1.onrender.com']  # render URL
+ALLOWED_HOSTS = ['*']  # render URL
