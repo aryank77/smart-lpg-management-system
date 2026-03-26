@@ -25,7 +25,6 @@ SECRET_KEY = 'django-insecure-(mhhm$g(ewls*q!d=m0=w#%=br0#e-$y@(h=2khh+5ejfedj(j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -130,4 +129,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'lpg_app/static')
 ]
-ALLOWED_HOSTS = ['*']  # render URL
+ALLOWED_HOSTS = ['https://smart-lpg-management-system-1.onrender.com']  # render URL
