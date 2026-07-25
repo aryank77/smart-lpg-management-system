@@ -5,6 +5,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about),
     path('contact/', views.contact),
+    
+    path('create_admin/', views.create_admin),
 
     path('login/', views.user_login, name='login'),
     path('register/', views.register, name='register'),
@@ -25,4 +27,5 @@ urlpatterns = [
     path('payment/<int:booking_id>/', views.create_payment, name='create_payment'),
     path('payment-verify/', views.payment_verify, name='payment_verify'),
     path('payment-failed/', views.payment_failed, name='payment_failed'),
+    
 ]
