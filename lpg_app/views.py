@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Booking, Company, Profile
+from .models import Booking, Company, Contact, Profile
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
@@ -95,7 +95,16 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'lpg_app/contact.html')
+    if request.method == "POST":
+        Contact.objects.create(
+            name=request.POST["name"],
+            email=request.POST["email"],
+            subject=request.POST["subject"],
+            message=request.POST["message"],
+        )
+        return render(request, "lpg_app/contact.html", {"success": True})
+
+    return render(request, "lpg_app/contact.html")
 
 
 # 🔐 AUTH
