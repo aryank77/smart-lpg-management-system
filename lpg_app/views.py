@@ -95,6 +95,8 @@ def about(request):
 
 
 def contact(request):
+    print(request.method)
+
     if request.method == "POST":
         Contact.objects.create(
             name=request.POST["name"],
