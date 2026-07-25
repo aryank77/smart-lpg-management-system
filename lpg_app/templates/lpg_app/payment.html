@@ -1,0 +1,64 @@
+{% extends 'lpg_app/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card p-4 shadow text-center">
+        <h3 class="mb-3">Complete Payment</h3>
+        <p>Amount: ₹{{ amount|floatformat:2 }}</p>
+
+        <button id="pay-btn" class="btn btn-success">Pay Now</button>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<!-- Hidden Form -->
+<form id="payment-form" method="POST" action="/payment-verify/">
+    {% csrf_token %}
+    <input type="hidden" name="razorpay_order_id" id="order_id">
+    <input type="hidden" name="razorpay_payment_id" id="payment_id">
+    <input type="hidden" name="razorpay_signature" id="signature">
+</form>
+
+<script>
+var options = {
+    "key": "{{ key }}",
+    "currency": "INR",
+    "order_id": "{{ order_id }}",
+
+    // 🔥 YE ADD KIYA (prefill fix)
+    "prefill": {
+        "name": "Test User",
+        "email": "test@test.com",
+        "contact": "9999999999"
+    },
+
+    "handler": function (response){
+        document.getElementById('payment_id').value = response.razorpay_payment_id;
+        document.getElementById('order_id').value = response.razorpay_order_id;
+        document.getElementById('signature').value = response.razorpay_signature;
+
+        document.getElementById('payment-form').submit();
+    },
+
+    "modal": {
+        "ondismiss": function(){
+            window.location.href = "/payment-failed/";
+        }
+    },
+
+    "theme": {
+        "color": "#28a745"
+    }
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById('pay-btn').onclick = function(e){
+    rzp.open();
+    e.preventDefault();
+}
+</script>
+
+{% endblock %}

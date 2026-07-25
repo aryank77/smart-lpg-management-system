@@ -2,25 +2,49 @@
 
 {% block content %}
 
-<h2>Your Bookings</h2>
+<div class="container mt-4">
+    <h2 class="mb-4">Your Bookings</h2>
 
-<table class="table">
-<tr>
-<th>Company</th>
-<th>Status</th>
-<th>Track</th>
-</tr>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Payment</th>
+            <th>Track</th>
+        </tr>
 
-{% for b in bookings %}
-<tr>
-<td>{{ b.company.name }}</td>
-<td>{{ b.status }}</td>
-<td>
-    <a href="/track/{{ b.id }}/" class="btn btn-info">Track</a>
-</td>
-</tr>
-{% endfor %}
+        {% for b in bookings %}
+        <tr>
+            <td>{{ b.company.name }}</td>
 
-</table>
+            <!-- Booking Status -->
+            <td>
+                <span class="badge bg-info text-dark">
+                    {{ b.status }}
+                </span>
+            </td>
+
+            <!-- ✅ Payment Status + Pay Now -->
+            <td>
+                {% if b.is_paid %}
+                    <span class="badge bg-success">Paid ✅</span>
+                {% else %}
+                    <a href="/payment/{{ b.id }}/" class="btn btn-warning btn-sm">
+                        Pay Now
+                    </a>
+                {% endif %}
+            </td>
+
+            <!-- Track Button -->
+            <td>
+                <a href="/track/{{ b.id }}/" class="btn btn-info btn-sm">
+                    Track
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
 
 {% endblock %}

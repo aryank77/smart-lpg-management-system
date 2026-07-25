@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Profile(models.Model):
     ROLE_CHOICES = (
         ('user', 'User'),
@@ -8,6 +9,7 @@ class Profile(models.Model):
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+
 
 class Company(models.Model):
     name = models.CharField(max_length=100)
@@ -26,6 +28,11 @@ class Booking(models.Model):
 
     status = models.CharField(max_length=20, default='Pending')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    # ✅ PAYMENT FIELDS (YAHI HONE CHAHIYE)
+    razorpay_order_id = models.CharField(max_length=100, blank=True, null=True)
+    razorpay_payment_id = models.CharField(max_length=100, blank=True, null=True)
+    is_paid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.consumer_number
