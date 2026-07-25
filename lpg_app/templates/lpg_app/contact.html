@@ -29,9 +29,12 @@
 
                     <!-- Form -->
                     <form>
-                        <input type="text" class="form-control mb-3" placeholder="Your Name">
-                        <input type="email" class="form-control mb-3" placeholder="Your Email">
-                        <textarea class="form-control mb-3" rows="3" placeholder="Your Message"></textarea>
+                        method="POST" action="">
+                        {% csrf_token %}
+                        <input type="text" class="form-control mb-3" placeholder="Your Name" name="name">
+                        <input type="email" class="form-control mb-3" placeholder="Your Email" name="email">
+                        <textarea class="form-control mb-3" rows="3" placeholder="Your Message" name="message"></textarea>
+                        <input type="text" class="form-control mb-3" placeholder="Subject" name="subject">
 
                         <button class="btn btn-primary w-100 shadow">
                             Send Message
