@@ -1,44 +1,197 @@
 {% extends 'lpg_app/base.html' %}
+{% load static %}
+
 {% block content %}
 
-<div class="container mt-5">
+<section class="contact-hero">
 
-    <div class="text-center mb-5">
-        <h1 class="fw-bold">📞 Contact Us</h1>
-        <p class="text-muted">We are here to help you anytime</p>
-    </div>
+    <div class="container">
 
-    <div class="row justify-content-center">
+        <div class="row align-items-center">
 
-        <div class="col-md-6">
+            <div class="col-lg-6">
 
-            <div class="card shadow-lg border-0">
+                <span class="contact-badge">
+                    Smart LPG Management
+                </span>
 
-                <!-- Header -->
-                <div class="bg-dark text-white text-center p-3 rounded-top">
-                    <h5>Get in Touch</h5>
+                <h1 class="hero-title">
+                    Let's Talk About
+                    <span>Your LPG Services</span>
+                </h1>
+
+                <p class="hero-text">
+
+                    Need help with booking, payments,
+                    delivery tracking or any issue?
+
+                    Our support team is available
+                    to help you.
+
+                </p>
+
+                <div class="contact-list">
+
+                    <div class="info-item">
+
+                        <div class="icon-circle">
+                            📍
+                        </div>
+
+                        <div>
+
+                            <h5>Office</h5>
+
+                            <p>
+                                Lucknow, Uttar Pradesh
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="icon-circle">
+                            📞
+                        </div>
+
+                        <div>
+
+                            <h5>Phone</h5>
+
+                            <p>
+                                +91 9876543210
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="icon-circle">
+                            📧
+                        </div>
+
+                        <div>
+
+                            <h5>Email</h5>
+
+                            <p>
+                                support@smartlpg.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="icon-circle">
+                            🕒
+                        </div>
+
+                        <div>
+
+                            <h5>Working Hours</h5>
+
+                            <p>
+                                Monday - Saturday <br>
+                                9:00 AM - 7:00 PM
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="p-4">
+            </div>
 
-                    <p><strong>📧 Email:</strong> support@lpg.com</p>
-                    <p><strong>📞 Phone:</strong> +91 9876543210</p>
-                    <p><strong>📍 Location:</strong> Lucknow, India</p>
+            <!-- CONTACT FORM -->
 
-                    <hr>
+            <div class="col-lg-6">
 
-                    <!-- Form -->
-                    <form
-                        method="POST" action="">
+                <div class="contact-card">
+
+                    <h2>
+                        Send Message
+                    </h2>
+
+                    <p>
+                        Fill out the form and we'll contact you soon.
+                    </p>
+
+                    {% if success %}
+
+                    <div class="alert alert-success">
+
+                        ✅ Message Sent Successfully.
+
+                    </div>
+
+                    {% endif %}
+
+                    <form method="POST">
+
                         {% csrf_token %}
-                        <input type="text" class="form-control mb-3" placeholder="Your Name" name="name">
-                        <input type="email" class="form-control mb-3" placeholder="Your Email" name="email">
-                        <textarea class="form-control mb-3" rows="3" placeholder="Your Message" name="message"></textarea>
-                        <input type="text" class="form-control mb-3" placeholder="Subject" name="subject">
 
-                        <button class="btn btn-primary w-100 shadow">
-                            Send Message
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <input
+                                    type="text"
+                                    class="form-control custom-input"
+                                    placeholder="Full Name"
+                                    name="name"
+                                    required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <input
+                                    type="email"
+                                    class="form-control custom-input"
+                                    placeholder="Email Address"
+                                    name="email"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <input
+                                type="text"
+                                class="form-control custom-input"
+                                placeholder="Subject"
+                                name="subject"
+                                required>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <textarea
+                                rows="6"
+                                class="form-control custom-input"
+                                placeholder="Write your message..."
+                                name="message"
+                                required></textarea>
+
+                        </div>
+
+                        <button
+                            class="send-btn">
+
+                            🚀 Send Message
+
                         </button>
+
                     </form>
 
                 </div>
@@ -49,6 +202,31 @@
 
     </div>
 
-</div>
+</section>
+
+
+<!-- GOOGLE MAP -->
+
+<section class="map-section">
+
+    <div class="container">
+
+        <div class="map-card">
+
+            <iframe
+
+                src="https://www.google.com/maps?q=Lucknow&output=embed"
+
+                loading="lazy"
+
+                allowfullscreen>
+
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}
